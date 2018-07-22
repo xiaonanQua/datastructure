@@ -44,7 +44,7 @@ int main(void)
                 break;
             case 'b':
                 flag=StackEmpty(&stack);//判断栈空
-                if(flag)
+                if(flag==true)
                 {
                     printf("栈为空\n");
                 } else{
@@ -55,17 +55,21 @@ int main(void)
                 printf("请输入进栈的值：");
                 scanf("%d",&x);
                 flag=Push(&stack,x);//进栈
-                if(flag)
+                if(flag==true)
                     printf("进栈成功！\n");
+                flag=GetTop(&stack,&x);//获取栈顶元素
+                if(flag==true)
+                    printf("获取栈顶元素成功为：%d\n",x);
                 break;
             case 'd':
                 flag=Pop(&stack,&x);//出栈
-                if(flag)
-                printf("出栈成功，元素为%d",x);
+                if(flag==true)
+                printf("出栈成功，元素为%d\n",x);
                 break;
             case 'e':
                 flag=GetTop(&stack,&x);//获取栈顶元素
-                printf("获取元素成功，栈顶元素为：%d",x);
+                if(flag==true)
+                printf("获取元素成功，栈顶元素为：%d\n",x);
                 break;
         }
     }
@@ -90,6 +94,7 @@ void InitStatck(Stack *stack){
  * @return
  */
 bool StackEmpty(Stack *stack){
+        printf("栈顶元素：%d\n",stack->top);
     if (stack->top==-1)//top=-1表示栈空
     {
         return true;//栈空
@@ -125,7 +130,7 @@ bool Push(Stack *stack,ElemType x){
 bool Pop(Stack *stack,ElemType *x){
 
     //判断栈空
-    if (StackEmpty(stack)){
+    if (StackEmpty(stack)==true){
         printf("栈空\n");
         return false;
     }
